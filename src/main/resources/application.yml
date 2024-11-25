@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/shope
+    username: root
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+jwt:
+  privatekey: S53BhXb11q+hyd5nwl2Sd++70Joe52wVZ12V2ykKdwo=
+fileUpload:
+  rootPath: src/main/java/com/tiennguyen/BackEndApi/Uploads
