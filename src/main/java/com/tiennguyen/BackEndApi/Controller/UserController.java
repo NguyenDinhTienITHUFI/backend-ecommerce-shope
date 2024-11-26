@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     UserServiceImp userServiceImp;
-    @GetMapping()
+    @GetMapping("/get-all-user")
     public ResponseEntity<?> getAllUser(){
         ResponseData responseData=new ResponseData();
         responseData.setData(userServiceImp.getAllUser());
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+    @GetMapping()
+    public ResponseEntity<?> getInforUser(){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(userServiceImp.getUserById());
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 }

@@ -5,6 +5,7 @@ import com.tiennguyen.BackEndApi.Repository.UserRepository;
 import com.tiennguyen.BackEndApi.Service.Imp.UserServiceImp;
 import com.tiennguyen.BackEndApi.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,5 +30,16 @@ public class UserService implements UserServiceImp {
             userDTOS.add(userDTO);
         }
         return userDTOS;
+    }
+
+    @Override
+    public UserDTO getUserById() {
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        Users users=userRepository.findByUsername(username);
+        UserDTO userDTO=new UserDTO();
+        userDTO.setId(users.getId());
+        userDTO.setUserName(users.getUsername());
+        userDTO.setFullname(users.getFullname());
+        return userDTO;
     }
 }
