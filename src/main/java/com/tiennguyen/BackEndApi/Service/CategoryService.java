@@ -45,4 +45,13 @@ public class CategoryService implements CategoryServiceImp {
         }
         return categoryDTOS;
     }
+
+    @Override
+    public CategoryDTO getCategoryById(int id) {
+        Category category= categoryRepository.findById(id);
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setCateName(category.getNameCate());
+        categoryDTO.setId(category.getId());
+        return categoryDTO;
+    }
 }

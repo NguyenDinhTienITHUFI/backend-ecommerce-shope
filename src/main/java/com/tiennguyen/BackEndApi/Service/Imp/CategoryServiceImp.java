@@ -10,4 +10,5 @@ import java.util.List;
 public interface CategoryServiceImp {
     boolean addCategory(String nameCate);
     List<CategoryDTO> getAllCategory();
+    CategoryDTO getCategoryById(int id);
 }
