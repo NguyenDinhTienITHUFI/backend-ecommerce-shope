@@ -42,4 +42,10 @@ public class ProductController {
         Resource resource=fileServiceImp.loadFile(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
     }
+    @GetMapping("/search-by-title")
+    public ResponseEntity<?>searchProductByTitle(@RequestParam String title){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.searchByTitle(title));
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
 }

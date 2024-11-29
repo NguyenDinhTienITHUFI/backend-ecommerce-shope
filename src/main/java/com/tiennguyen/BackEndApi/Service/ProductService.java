@@ -67,4 +67,24 @@ public class ProductService implements ProductServiceImp {
         }
         return listDTO;
     }
+
+    @Override
+    public List<ProductsDTO> searchByTitle(String title) {
+        List<Products> products=productRepository.searchProductByTitle(title);
+        System.out.println(title +" - "+products.size());
+        List<ProductsDTO> list=new ArrayList<>();
+        for(Products product:products){
+            ProductsDTO productsDTO=new ProductsDTO();
+            productsDTO.setId(product.getId());
+            productsDTO.setTitle(product.getTitle());
+            productsDTO.setBrand(product.getBrand());
+            productsDTO.setImage(product.getImage());
+            productsDTO.setStock(product.getStock());
+            productsDTO.setDescription(product.getDescription());
+            productsDTO.setPrice(product.getPrice());
+            System.out.println(product.getTitle());
+            list.add(productsDTO);
+        }
+        return list;
+    }
 }

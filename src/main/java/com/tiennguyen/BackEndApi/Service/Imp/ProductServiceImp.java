@@ -14,4 +14,5 @@ public interface ProductServiceImp {
                           double price,
                           int cate_id);
     List<ProductsDTO> getAllProduct();
+    List<ProductsDTO> searchByTitle(String title);
 }
