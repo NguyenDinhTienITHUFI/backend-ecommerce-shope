@@ -1,5 +1,6 @@
 package com.tiennguyen.BackEndApi.Repository;
 
+import com.tiennguyen.BackEndApi.entity.Category;
 import com.tiennguyen.BackEndApi.entity.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +14,10 @@ public interface ProductRepository extends JpaRepository<Products,Integer> {
     Products findById(int id);
     @Query("SELECT p FROM products p WHERE p.title LIKE CONCAT('%', :title, '%')")
     List<Products> searchProductByTitle(@Param("title") String title);
+    List<Products> getProductsByCategory(Category category);
 
+    @Query("select p from products  p order by p.price asc ")
+    List<Products> sortASC();
+    @Query("select p from products  p order by p.price DESC")
+    List<Products> sortDESC();
 }

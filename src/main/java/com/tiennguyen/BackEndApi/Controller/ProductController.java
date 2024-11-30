@@ -48,4 +48,22 @@ public class ProductController {
         responseData.setData(productServiceImp.searchByTitle(title));
         return new ResponseEntity<>(responseData,HttpStatus.OK);
     }
+    @GetMapping("/get-product-by-idcate")
+    public ResponseEntity<?>getProductByCateId(@RequestParam int cateId){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.getListProductByCategory(cateId));
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
+    @GetMapping("/sort-asc")
+    public ResponseEntity<?>sortASC(){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.filterASC());
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
+    @GetMapping("/sort-desc")
+    public ResponseEntity<?>sortDESC(){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.filterDESC());
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
 }

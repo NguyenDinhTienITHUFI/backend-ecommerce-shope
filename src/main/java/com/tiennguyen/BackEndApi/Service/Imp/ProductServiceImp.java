@@ -15,4 +15,7 @@ public interface ProductServiceImp {
                           int cate_id);
     List<ProductsDTO> getAllProduct();
     List<ProductsDTO> searchByTitle(String title);
+    List<ProductsDTO> getListProductByCategory(int id);
+    List<ProductsDTO> filterASC();
+    List<ProductsDTO> filterDESC();
 }

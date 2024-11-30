@@ -1,6 +1,7 @@
 package com.tiennguyen.BackEndApi.Service;
 
 import com.tiennguyen.BackEndApi.DTO.ProductsDTO;
+import com.tiennguyen.BackEndApi.Repository.CategoryRepository;
 import com.tiennguyen.BackEndApi.Repository.ProductRepository;
 import com.tiennguyen.BackEndApi.Service.Imp.FileServiceImp;
 import com.tiennguyen.BackEndApi.Service.Imp.ProductServiceImp;
@@ -21,6 +22,8 @@ public class ProductService implements ProductServiceImp {
     ProductRepository productRepository;
     @Autowired
     FileServiceImp fileServiceImp;
+    @Autowired
+    CategoryRepository categoryRepository;
     @Override
     public boolean addNewProduct(String title, int stock, String brand, String description, MultipartFile file, double price, int cate_id) {
         boolean isInsertSuccess=false;
@@ -71,7 +74,7 @@ public class ProductService implements ProductServiceImp {
     @Override
     public List<ProductsDTO> searchByTitle(String title) {
         List<Products> products=productRepository.searchProductByTitle(title);
-        System.out.println(title +" - "+products.size());
+
         List<ProductsDTO> list=new ArrayList<>();
         for(Products product:products){
             ProductsDTO productsDTO=new ProductsDTO();
@@ -82,7 +85,67 @@ public class ProductService implements ProductServiceImp {
             productsDTO.setStock(product.getStock());
             productsDTO.setDescription(product.getDescription());
             productsDTO.setPrice(product.getPrice());
-            System.out.println(product.getTitle());
+
+            list.add(productsDTO);
+        }
+        return list;
+    }
+
+    @Override
+    public List<ProductsDTO> getListProductByCategory(int id) {
+        Category category=categoryRepository.findById(id);
+        List<Products> products=productRepository.getProductsByCategory(category);
+        List<ProductsDTO> list=new ArrayList<>();
+        for(Products product:products){
+            ProductsDTO productsDTO=new ProductsDTO();
+            productsDTO.setId(product.getId());
+            productsDTO.setTitle(product.getTitle());
+            productsDTO.setBrand(product.getBrand());
+            productsDTO.setImage(product.getImage());
+            productsDTO.setStock(product.getStock());
+            productsDTO.setDescription(product.getDescription());
+            productsDTO.setPrice(product.getPrice());
+
+            list.add(productsDTO);
+        }
+        return list;
+    }
+
+    @Override
+    public List<ProductsDTO> filterASC() {
+        List<Products> products=productRepository.sortASC();
+
+        List<ProductsDTO> list=new ArrayList<>();
+        for(Products product:products){
+            ProductsDTO productsDTO=new ProductsDTO();
+            productsDTO.setId(product.getId());
+            productsDTO.setTitle(product.getTitle());
+            productsDTO.setBrand(product.getBrand());
+            productsDTO.setImage(product.getImage());
+            productsDTO.setStock(product.getStock());
+            productsDTO.setDescription(product.getDescription());
+            productsDTO.setPrice(product.getPrice());
+
+            list.add(productsDTO);
+        }
+        return list;
+    }
+
+    @Override
+    public List<ProductsDTO> filterDESC() {
+        List<Products> products=productRepository.sortDESC();
+
+        List<ProductsDTO> list=new ArrayList<>();
+        for(Products product:products){
+            ProductsDTO productsDTO=new ProductsDTO();
+            productsDTO.setId(product.getId());
+            productsDTO.setTitle(product.getTitle());
+            productsDTO.setBrand(product.getBrand());
+            productsDTO.setImage(product.getImage());
+            productsDTO.setStock(product.getStock());
+            productsDTO.setDescription(product.getDescription());
+            productsDTO.setPrice(product.getPrice());
+
             list.add(productsDTO);
         }
         return list;
