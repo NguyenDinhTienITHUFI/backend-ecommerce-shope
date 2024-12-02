@@ -20,4 +20,6 @@ public interface ProductRepository extends JpaRepository<Products,Integer> {
     List<Products> sortASC();
     @Query("select p from products  p order by p.price DESC")
     List<Products> sortDESC();
+    @Query("SELECT p from products  p where p.price between :firstvalue and :secondvalue order by p.price asc ")
+    List<Products> filterProductByRange(@Param("firstvalue") int firstvalue,@Param("secondvalue") int secondvalue);
 }

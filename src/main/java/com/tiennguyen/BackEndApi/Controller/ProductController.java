@@ -66,4 +66,10 @@ public class ProductController {
         responseData.setData(productServiceImp.filterDESC());
         return new ResponseEntity<>(responseData,HttpStatus.OK);
     }
+    @GetMapping("/filter-range")
+    public ResponseEntity<?>filterByRange(@RequestParam int firstValue,@RequestParam int secondValue){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.filterByRange(firstValue,secondValue));
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
 }

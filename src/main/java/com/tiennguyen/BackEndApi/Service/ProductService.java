@@ -150,4 +150,24 @@ public class ProductService implements ProductServiceImp {
         }
         return list;
     }
+
+    @Override
+    public List<ProductsDTO> filterByRange(int firstValue, int secondValue) {
+        List<Products> products=productRepository.filterProductByRange(firstValue,secondValue);
+
+        List<ProductsDTO> list=new ArrayList<>();
+        for(Products product:products){
+            ProductsDTO productsDTO=new ProductsDTO();
+            productsDTO.setId(product.getId());
+            productsDTO.setTitle(product.getTitle());
+            productsDTO.setBrand(product.getBrand());
+            productsDTO.setImage(product.getImage());
+            productsDTO.setStock(product.getStock());
+            productsDTO.setDescription(product.getDescription());
+            productsDTO.setPrice(product.getPrice());
+
+            list.add(productsDTO);
+        }
+        return list;
+    }
 }

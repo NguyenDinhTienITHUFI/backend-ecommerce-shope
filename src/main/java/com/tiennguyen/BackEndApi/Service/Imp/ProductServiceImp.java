@@ -18,4 +18,5 @@ public interface ProductServiceImp {
     List<ProductsDTO> getListProductByCategory(int id);
     List<ProductsDTO> filterASC();
     List<ProductsDTO> filterDESC();
+    List<ProductsDTO> filterByRange(int firstValue,int secondValue);
 }
