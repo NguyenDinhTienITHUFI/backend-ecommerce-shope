@@ -40,6 +40,7 @@ public class UserService implements UserServiceImp {
         userDTO.setId(users.getId());
         userDTO.setUserName(users.getUsername());
         userDTO.setFullname(users.getFullname());
+
         return userDTO;
     }
 }

@@ -63,4 +63,16 @@ public class ShopService implements ShopServiceImp {
         return shopDTO;
     }
 
+    @Override
+    public ShopDTO getShopById(int id) {
+        Shop shop=shopRepository.getShopById(id);
+
+        ShopDTO shopDTO=new ShopDTO();
+        shopDTO.setId(shop.getId());
+        shopDTO.setTitle(shop.getTitle());
+        shopDTO.setAddress(shop.getAddress());
+        shopDTO.setImage(shop.getImage());
+        return shopDTO;
+    }
+
 }

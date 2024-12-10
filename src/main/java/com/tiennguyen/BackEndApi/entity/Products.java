@@ -26,6 +26,17 @@ public class Products {
     @Column(name="create_date")
     private Date createDate;
 
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="shop_id")
+    private Shop shop;
     @ManyToOne
     @JoinColumn(name = "cate_id")
     private Category category;

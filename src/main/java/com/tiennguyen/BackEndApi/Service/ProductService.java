@@ -7,6 +7,7 @@ import com.tiennguyen.BackEndApi.Service.Imp.FileServiceImp;
 import com.tiennguyen.BackEndApi.Service.Imp.ProductServiceImp;
 import com.tiennguyen.BackEndApi.entity.Category;
 import com.tiennguyen.BackEndApi.entity.Products;
+import com.tiennguyen.BackEndApi.entity.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -169,5 +170,21 @@ public class ProductService implements ProductServiceImp {
             list.add(productsDTO);
         }
         return list;
+    }
+
+    @Override
+    public ProductsDTO getByID(int id) {
+        Products product=productRepository.findById(id);
+        ProductsDTO productsDTO=new ProductsDTO();
+        productsDTO.setId(product.getId());
+        productsDTO.setTitle(product.getTitle());
+        productsDTO.setBrand(product.getBrand());
+        productsDTO.setImage(product.getImage());
+        productsDTO.setStock(product.getStock());
+        productsDTO.setDescription(product.getDescription());
+        productsDTO.setPrice(product.getPrice());
+        Shop shop=product.getShop();
+        productsDTO.setShopID(shop.getId());
+        return productsDTO;
     }
 }

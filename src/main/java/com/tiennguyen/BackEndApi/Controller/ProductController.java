@@ -72,4 +72,10 @@ public class ProductController {
         responseData.setData(productServiceImp.filterByRange(firstValue,secondValue));
         return new ResponseEntity<>(responseData,HttpStatus.OK);
     }
+    @GetMapping("/get-by-id")
+    public ResponseEntity<?>getByID(@RequestParam int id){
+        ResponseData responseData=new ResponseData();
+        responseData.setData(productServiceImp.getByID(id));
+        return new ResponseEntity<>(responseData,HttpStatus.OK);
+    }
 }

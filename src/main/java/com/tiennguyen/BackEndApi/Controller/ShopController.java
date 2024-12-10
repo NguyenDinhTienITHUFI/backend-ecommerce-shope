@@ -6,11 +6,9 @@ import com.tiennguyen.BackEndApi.Service.Imp.ShopServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/shop")
 public class ShopController {
@@ -34,6 +32,25 @@ public class ShopController {
         responseData.setDesc("Lấy thông tin shop thành công");
         responseData.setData(shopDTO);
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }@GetMapping("/get-by-id")
+    public ResponseEntity<?> getByID(@RequestParam int id) {
+        System.out.println(id);
+        ShopDTO shopDTO = shopServiceImp.getShopById(id);
+
+        if (shopDTO == null) {
+
+            ResponseData responseData = new ResponseData();
+            responseData.setDesc("Shop không tồn tại");
+            responseData.setData(null);
+            return new ResponseEntity<>(responseData, HttpStatus.NOT_FOUND);
+        }
+
+
+        ResponseData responseData = new ResponseData();
+        responseData.setDesc("Lấy thông tin shop thành công");
+        responseData.setData(shopDTO);
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
+
 
 }

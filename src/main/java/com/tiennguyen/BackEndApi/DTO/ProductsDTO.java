@@ -19,6 +19,15 @@ public class ProductsDTO {
     private String image;
 
     private double price;
+    private int shopID;
+
+    public int getShopID() {
+        return shopID;
+    }
+
+    public void setShopID(int shopID) {
+        this.shopID = shopID;
+    }
 
     public int getQuantity() {
         return quantity;

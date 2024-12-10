@@ -15,11 +15,21 @@ public class Shop {
     private String title;
     @Column(name="description")
     private String description;
+
+    public Set<Products> getListProducts() {
+        return listProducts;
+    }
+
+    public void setListProducts(Set<Products> listProducts) {
+        this.listProducts = listProducts;
+    }
+
     @Column(name="address")
     private String address;
     @Column(name="image")
     private String image;
-
+    @OneToMany(mappedBy = "shop")
+    private Set<Products> listProducts;
     @OneToMany(mappedBy = "shop")
     private Set<CategoryShop> listCategoryShop;
 

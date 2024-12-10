@@ -49,7 +49,7 @@ public class CustomFilterSecurity {
 //        return new InMemoryUserDetailsManager(user1, user2, admin);
 //    }
 
-    String[] passCors={"/login/**","/product/file/**"};
+    String[] passCors={"/login/**","/product/file/**","/product/get-all-product","/product/get-by-id","/shop/**"};
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors()
